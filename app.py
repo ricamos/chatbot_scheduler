@@ -17,13 +17,12 @@ https://wiki.python.org/moin/PythonDecorators
 '''
 @app.route('/', methods=['GET'])
 def verify():
-
     # Webhook verification
-    # if request.args.get("hub.mod") == "subscribe" and request.args.get("hub.challenge"):
-    if not request.args.get("hub.verify_token") == "hello":
-        return "Verification token mismatch", 403
-    return request.args["hub.challenge"], 200
-    # return "Hello world", 200
+    if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.challenge"):
+        if not request.args.get("hub.verify_token") == "hello":
+            return "Verification token mismatch", 403
+        return request.args["hub.challenge"], 200
+    return "Hello world", 200
 
 @app.route('/', methods=['POST'])
 def webhook():
