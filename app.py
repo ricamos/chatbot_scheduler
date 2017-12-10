@@ -1,10 +1,12 @@
 import os, sys
 from flask import Flask, request
+from utils import wit_response
 from pymessenger import Bot
 
 app = Flask(__name__)
 
-PAGE_ACCESS_TOKEN = "EAAdYVJ5PjIMBAPUzBjaV6TPATCvJ7CGuylm0kQ1ILmEsZAcwvakZAzQawKDPiikNbZCenOdKCQ0PpulN36qRk3hw3ciKwAJ979loLFac9jjZBtLwuHAuMB3k4u8rh9x9Am7hhMlHQSdyW1TelwTePwlQ81L1TvmfWkogmQN9flYU80JqUkJp"
+TOKEN = open('token','r')
+PAGE_ACCESS_TOKEN = TOKEN.read()
 
 bot = Bot(PAGE_ACCESS_TOKEN)
 '''
@@ -43,8 +45,27 @@ def webhook():
                     else:
                         messaging_event = 'no_text'
 
-                    #Echo
-                    response = messaging_text
+                    # Respostas
+                    response = None
+
+                    entity, value = wit_response(messaging_text)
+
+                    if entity == 'marcarhora':
+
+                        response = "Gostario de marcar horário! \n" \
+                                   "Qual o melhor dia?"
+
+                    elif entity == 'servico':
+
+                        response = "Vou listar alguns serviços fornecidos"
+
+                    elif entity == 'saudacao':
+                        response = "Olá! Meu nome é Bot \n" \
+                                   "Sou um robô e vou tentar lhe ajudar!    "
+
+                    if response == None:
+                        response = "Eu ainda não aprendi sobre isso. Mas em breve poderei te responder \n" \
+                                   "Por enquanto tente mais informações no telefone 9999-9999"
 
                     bot.send_text_message(sender_id, response)
 

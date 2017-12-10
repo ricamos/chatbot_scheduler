@@ -1,7 +1,27 @@
 chatbot_scheduler
 Chatbot para agendamento para tratamento de beleza
 
+A chatbot that scheduler a consult in tratamento 
+
 criar um bot
+
 Integrar com facebook messenger
+ - Pegar o nome eoutras informações da pessoa baseado no messenger id
+ - Ocultar token
+
 Agendar no google calendar
 Confirmar agendamento no dia da consulta via sms
+
+Fix:
+Problemas com envio de imagem
+
+Perguntas:
+Preciso marcar horario?
+Você pode me recomendar um serviço?
+Há algum horario disponivel hoje?
+Tenho uma pergunta sobre um serviço. Você pode me ajudar?
+
+
+Referencia:
+https://www.youtube.com/watch?v=uU4pjtcbFeg&list=PLyb_C2HpOQSC4M3lzzrql7DSppTeAxh-x&index=1
+https://gist.github.com/nikhilkumarsingh/8f6e109e4968820d37dd27d4afbf72b0
